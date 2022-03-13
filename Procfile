@@ -1,0 +1,1 @@
+web: gunicorn uni_notes.wsgi --log-file -

@@ -1,0 +1,15 @@
+{% extends "uni_notes/base.html" %} {% block title %} UniNote Registration {% endblock %}
+{% block content %}
+    <div class="heading">
+        <h1 class="inline">Registration</h1>
+   </div> 
+    <div class="registration_box">
+        <form method="post" action="{% url 'users:register' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <button name="submit">register</button>
+            <input type="hidden" name="next" value="{% url 'uni_notes:topic_list' %}" />
+        </form>
+    </div>    
+{% endblock content %}

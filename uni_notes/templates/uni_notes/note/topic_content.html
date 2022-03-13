@@ -1,0 +1,60 @@
+{% extends "uni_notes/base.html" %} {% block title %} {{ topic_name }} {% endblock %}
+{% block content %}
+<div class="heading">
+ <h1 class="inline">📄 Notes - {{ topic_name }}</h1>
+ <a href="{% url 'uni_notes:new_note' topic_name %}" class="btn btn_position-add">+ Add Note</a>
+ 
+</div> 
+ <div class="content_space">
+    
+  {% if object_list|length == 0 %}
+  <h2> Notes has not been added. </h2>
+  {% else %}
+   
+  {% for note in notes %}
+  <div class="description_box">
+    <div class="description_box-title">
+      <a href="{{ note.get_absolute_url }}" ></a>
+      <p class="description_box-title-link">📄 {{ note.title|truncatechars:20 }}</p>
+      
+    </div>
+    <div class="description_box-middle">
+      <div class="description_box-middle-text">
+        {{ note.body|truncatechars:50}}
+      </div>
+    </div>
+    <div class="date description_box-bottom">
+      <div class="description_box-bottom-text">
+        {% if note.created != note.updated %}
+           Updated {{ note.updated }}
+        {% else %}
+           Published {{ note.created }}  
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  
+  {% endfor %}
+  {% endif %}  
+</div>  
+{% include "pagination.html" with page=notes %}
+<div class="btn_position-bottom block"> 
+  <a href="{% url 'uni_notes:edit_topic' topic_form_edit.id %}" class="btn">📝 Edit Topic</a>
+  <a href="{% url 'uni_notes:delete_topic' topic_form_edit.id %}" class="btn">🗑️ Delete Topic</a>
+</div>
+{% endblock %}
+{% block sidebar %}
+
+  {% for topic in topics %}
+      <div class="btn_topic">
+        <a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a>
+      </div>  
+      {% if topic.name == topic_name %}
+          {% for note in object_list %}
+              <a href="{{ note.get_absolute_url }}" class="btn_topic__notes">{{ note.title|truncatechars:16 }}</a>
+          {% endfor %}
+      {% endif %}
+  {% endfor %}
+{% endblock  %}    
+    

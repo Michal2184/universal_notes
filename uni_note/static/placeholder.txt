@@ -1,0 +1,4 @@
+Notatka:
+
+This file ensures that uni_note/static/ will be added to the project.
+Django will collect static files and place them in uni_note/static/.

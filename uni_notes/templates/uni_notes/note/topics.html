@@ -1,0 +1,48 @@
+{% extends "uni_notes/base.html" %} {% block title %} All Topics {% endblock %}
+{% block content %}
+<div class="heading">
+  <h1 class="inline">📰 Topics</h1>
+  
+</div>
+  <div class="content_space"> 
+ {% for topic in topics %}
+  
+ 
+  <div class="description_box">
+    <div class="description_box-title">
+      <a href="{{ topic.get_absolute_url }}"></a>
+      <p class="description_box-title-link">📰 {{ topic.name|truncatechars:22 }}</p>
+      
+    </div>
+    <div class="description_box-middle">
+      <div class="description_box-middle-text">
+        {{ topic.body|truncatechars:50 }}
+      </div>
+    </div>
+    <div class="date description_box-bottom">
+      <div class="description_box-bottom-text">
+        
+        {% if topic.created != topic.updated %}
+           Updated {{ topic.updated }}
+        {% else %}
+           Published {{ topic.created }}  
+        {% endif %}
+      </div>
+    </div>
+  </div>
+    
+ {% endfor %}
+</div>
+ {% include "pagination.html" with page=topics %}
+ <a href="{% url 'uni_notes:new_topic' %}" class ="btn btn_position-add">+ Add Topic</a>
+{% endblock %}
+{% block sidebar %}
+
+{% for topic in object_list %}
+  <div class="btn_topic">
+    <a href="{{ topic.get_absolute_url }}"> {{ topic.name }} </a>
+  </div>
+ 
+{% endfor %}
+
+{% endblock  %}

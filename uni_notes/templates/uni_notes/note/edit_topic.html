@@ -1,0 +1,14 @@
+
+{% extends 'uni_notes/base.html' %}
+{% block content %}
+<div class="heading">
+  <h1 class="inline">Edit Topic</h1>
+</div>
+  <form action="{% url 'uni_notes:edit_topic' topic.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <span></span>
+      </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+    <button name="submit" class="btn">save changes</button>
+  </form>
+{% endblock content %}

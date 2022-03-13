@@ -1,0 +1,34 @@
+{% extends 'uni_notes/base.html' %}
+
+{% block title %} {{ note.title }} {% endblock %}
+
+{% block content %}
+<div class="heading">
+  <h1 class="inline">📄 {{ note.topic }} - {{ note.title }}</h1>
+  
+</div>
+  <p class="date">
+      Published {{ note.publish }}
+  </p>
+  <p class="date">
+      Updated {{ note.updated }}
+  </p>
+   {{ note.body|linebreaks }}
+   <div class="btn_position-bottom block"> 
+    <a href="{% url 'uni_notes:edit_note' note.id %}" class ="btn">📄 Edit note</a>
+   <a href="{% url 'uni_notes:delete_note' note.id %}" class="btn">🗑️ Delete note</a>
+  </div>
+   
+{% endblock  %}
+{% block sidebar %}
+  {% for topic in topics %}
+      <div class="btn_topic">
+        <a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a>
+      </div>  
+        {% if topic.name == topic_name %}
+          {% for note in notes %}
+            <a href="{{ note.get_absolute_url }}" class="btn_topic__notes">{{ note.title|truncatechars:16 }}</a>
+          {% endfor %}
+        {% endif %}
+  {% endfor %}
+{% endblock  %}

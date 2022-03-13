@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+    <link href="{% static "uni_notes.css" %}?{% now "U" %}" rel="stylesheet">
+  </head>
+  <body>
+    <div id="content">
+      <p class="login_status_box">
+          {% if user.is_authenticated %}
+            <span class="login_status_box-text">Hello, {{ user.username }}</span>
+            <a href="{% url 'users:logout' %}" class="btn">Log Out</a>
+          {% endif %}
+      </p>
+      {% block content %} {% endblock %}
+    </div>
+    <div id="sidebar">
+        <a href="{% url 'uni_notes:topic_list' %}">
+          <div class="logo"><img src="{% static 'uni_notes/images/logo_transparent.png' %}" class="logo_img"></div>
+        </a>
+        <div class="sidebar_items">  
+          {% block sidebar %}{% endblock  %}
+        </div>
+    </div>
+    <footer class="footer">
+      <p id="help">Help</p>
+      <a href="{% url 'mailer:contact' %}" id="contact">Contact</a>
+      <p>&#169; Build by Michal Samordak</p>
+    </footer>
+    <div class="help_box">
+      <div class="help_box-header">  
+        <h1>Help</h1>
+        
+      </div>
+        <p class="help_box-text">
+          Main view contain list of all topics for storing notes. 
+          You can add new topics by clicking "+Add Topic" button.
+          As new topics are created they will display on main screen.
+          After clicking on the topic you can add new notes ,edit and delete them.
+          If you have any problems please contact us using form provided.
+        </p>
+        <p class="help_box-text-2">Thanks for using Universal Notes !!!</p>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+  </body>
+</html>
