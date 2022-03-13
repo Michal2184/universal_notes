@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # will have to delete it
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%it&#j+fu11y6wt8v*!jy=to3-h$op@(f#wxjp5&p+en+8v-86'
+SECRET_KEY = 'type your own'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -152,11 +152,11 @@ STATICFILES_DIRS = (
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'samordak85@gmail.com'
+DEFAULT_FROM_EMAIL = 'youremail@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'samordak85@gmail.com'
-EMAIL_HOST_PASSWORD = 'amwodbvrznhbazor'
+EMAIL_HOST_USER = 'youremail@gmail.com'
+EMAIL_HOST_PASSWORD = 'passfromgoogle'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
