@@ -1,5 +1,5 @@
 # universal_notes
-Django project 
+Django project for storing notes in organized manner
 
 
 working project on heroku:
